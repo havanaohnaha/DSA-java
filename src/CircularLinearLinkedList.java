@@ -10,7 +10,7 @@ class CircularLinearLinkedList {
         CircularLinkedList Cll = new CircularLinkedList();
         do {
             System.out.println("press 1 for Append");
-            System.out.println("press 2 for add at the Begining");
+            System.out.println("press 2 for add at the Beginning");
             System.out.println("press 3 for Insert any number");
             System.out.println("press 4 for Delete any number");
             System.out.println("press 5 for Display");
@@ -61,10 +61,11 @@ class CircularLinkedList {
     void append(int data) {
         nodec n = new nodec();
         n.data = data;
-        n.link = head;
+        n.link = n;
 
         if (head == null) {
             head = n;
+            n.link=head;
         } else {
             nodec temp = head;
             while (temp.link != head) {

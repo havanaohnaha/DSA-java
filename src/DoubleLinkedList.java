@@ -1,8 +1,8 @@
 import java.util.Scanner;
-class node {
+class NNode {
     int data;
-    node llink;
-    node rlink;
+    NNode llink;
+    NNode rlink;
 }
 class DoubleLinkedList {
     public static void main(String[] args) {
@@ -62,29 +62,30 @@ class DoubleLinkedList {
 
 }
 class DoubleList{
-    node head;
+    NNode head;
     void append(int data){
-        node n = new node();
+        NNode n = new NNode();
         n.data = data;
         if(head==null){
             head=n;
             return;
+        }else {
+            NNode temp = head;
+            while (temp.rlink != null) {
+                temp = temp.rlink;
+            }
+            temp.rlink = n;
+            n.llink = temp;
+            n.rlink = null;
+            return;
         }
-        node temp=head;
-        while(temp.rlink!=null){
-            temp=temp.rlink;
-        }
-        temp.rlink=n;
-        n.llink=temp;
-        n.rlink=null;
-        return;
     }
     void displayforward(){
         if(head==null){
             System.out.println("list is empty");
             return ;
         }
-        node temp=head;
+        NNode temp=head;
         System.out.println("the content of the list");
         while(temp.rlink!=null){
             System.out.println("data = "+temp.data);
@@ -97,7 +98,7 @@ class DoubleList{
             System.out.println("list is empty");
             return;
         }
-        nodec temp=head;
+        NNode temp=head;
         while(temp.rlink!=null){
             temp=temp.rlink;
         }
@@ -109,8 +110,8 @@ class DoubleList{
         System.out.println("\n");
 
     }
-    void AtTheBeginning(data){
-        node n =new node();
+    void AtTheBeginning(int data){
+        NNode n =new NNode();
         n.data=data;
         if(head==null){
             n.rlink=null;
@@ -118,7 +119,7 @@ class DoubleList{
             head=n;
             return;
         }else{
-            node temp=head;
+            NNode temp=head;
             n.rlink=temp;
             temp.llink=n;
             n.llink=null;
@@ -126,20 +127,28 @@ class DoubleList{
             return;
         }
     }
-    void delete(){
-        if(head==null){
-            System.out println("list is empty");
+    void delete(int data) {
+        if (head == null) {
+            System.out.println("List is empty");
             return;
         }
-        node cur,prev;
-        prev=null;
-        cur=head;
-        while(cur.rlink!=null){ //delete rear
-            prev=cur;
-            cur=cur.rlink;
+        NNode cur = head;
+        NNode prev = null;
+        if (cur.data == data) {
+            head = cur.rlink; // move head
+            System.out.println("Item deleted: " + data);
+            return;
         }
-        System.out .println("item deleted"+cur.data);
-        prev.rlink=null;
+        while (cur != null && cur.data != data) {
+            prev = cur;
+            cur = cur.rlink;
+        }
+        if (cur == null) {
+            System.out.println("item not found: " + data);
+            return;
+        }
+        prev.rlink = cur.rlink;
+        System.out.println("item deleted: " + data);
     }
 
 

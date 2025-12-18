@@ -1,7 +1,7 @@
 import java.util.Scanner;
 class node {
     int data;
-    node link;
+    NNode link;
 }
 class LinearLinkedList {
     public static void main(String[] args) {
@@ -56,17 +56,17 @@ class LinearLinkedList {
 
 }
 class CLinkedList {
-    node head;
+    NNode head;
 
     void append(int data) {
-        node n = new node();
+        NNode n = new NNode();
         n.data = data;
         n.link = null;
 
         if (head == null) {
             head = n;
         } else {
-            node temp = head;
+            NNode temp = head;
             while (temp.link != null) {
                 temp = temp.link;
             }
@@ -75,16 +75,16 @@ class CLinkedList {
     }
 
     void AtTheBeginning(int data) {
-        node n=new node();
+        NNode n=new NNode();
         n.data=data;
         n.link= head;
         head=n;
     }
     void insert(int data, int pos) {
         int i=1;
-        node n = new node();
+        NNode n = new NNode();
         n.data = data;
-        node temp = head;
+        NNode temp = head;
         while (i < pos)
         {
             temp = temp.link;
@@ -96,8 +96,8 @@ class CLinkedList {
     }
 
     void delete(int data) {
-        node temp = head;
-        node pre = head;
+        NNode temp = head;
+        NNode pre = head;
         if (head == null)
         {
             System.out.println("list is empty");
@@ -134,7 +134,7 @@ class CLinkedList {
                 System.out.println("list is empty");
 
             } else {
-                node temp = head;
+                NNode temp = head;
                 while (temp != null) {
                     System.out.println("data" + temp.data);
                     temp = temp.link;

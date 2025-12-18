@@ -109,6 +109,21 @@ class DoubleList{
             return;
         }
     }
+    void delete(){
+        if(head==null){
+            System.out println("list is empty");
+            return;
+        }
+        node cur,prev;
+        prev=null;
+        cur=head;
+        while(cur.rlink!=null){ //delete rear
+            prev=cur;
+            cur=cur.rlink;
+        }
+        System.out .println("item deleted"+cur.data);
+        prev.rlink=null;
+    }
 
 
 }

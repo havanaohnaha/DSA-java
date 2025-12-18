@@ -79,8 +79,17 @@ class CircularLinkedList {
     void AtTheBeginning(int data) {
         nodec n=new nodec();
         n.data=data;
-        n.link= head;
-        head=n;
+        if(head==null) {
+            head = n;
+        }else{
+            n.link=head;
+            nodec temp=head;
+            while(temp.link!=head){
+                temp=temp.link;
+            }
+            temp.link=n;
+            head=n;
+        }
     }
     void insert(int data, int pos) {
         int i=1;
@@ -103,32 +112,33 @@ class CircularLinkedList {
         if (head == null)
         {
             System.out.println("list is empty");
+            return;
         }
-        else
-        {
-            while (temp!= null) {
-                if (temp.data == data)
-                {
-                    if (head == temp)
-                    {
-                        head = temp.link;
-                        break;
-                    }
-                    else
-                    {
-                        pre.link = temp.link;
-                        break;
-                    }
-                }
-                else
-                {
-                    pre=temp;
-                    temp=temp.link;
-                }
+        if(head.data==data){
+            if(head.link==head){
+                head=null;
+                return;
+            }else{
+            nodec last= head;
+            while (last.link!=head) {
+                last = last.link;
+            }
+                    head=head.link;
+                    last.link= head;
 
             }
         }
-        return;
+        pre=temp;
+        temp=temp.link;
+        while(temp!=head){
+            if(temp.data==data){
+                pre.link=temp.link;
+                return;
+            }
+            pre=temp;
+            temp=temp.link;
+        }
+        System.out.println("element not found");
     }
 
     void display () {

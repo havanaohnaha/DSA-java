@@ -92,6 +92,23 @@ class DoubleList{
         }
         System.out.println("\n");
     }
+    void displaybackward(){
+        if(head==null){
+            System.out.println("list is empty");
+            return;
+        }
+        nodec temp=head;
+        while(temp.rlink!=null){
+            temp=temp.rlink;
+        }
+        System.out.println("contents od the list");
+        while(temp.llink!=null){
+            System.out.println("data"+temp.data);
+            temp=temp.llink;
+        }
+        System.out.println("\n");
+
+    }
     void AtTheBeginning(data){
         node n =new node();
         n.data=data;
